@@ -38,7 +38,7 @@ class TransferRequest(BaseModel):
 def read_root():
     return {"message": "Hello, Railway!"}
 
-@app.post("/get_accounts/")
+@app.post("/get_accounts")
 def get_accounts(request: Request):
     print("Received request:", request.json())
     customer_id = request.customer_id
@@ -75,6 +75,7 @@ def transfer_funds(request: Request):
     "method":"POST", "headers": {"Content-Type": "application/json",},  
     "parameters": "account_number,customer_id"}
     return {"fulfilment_api": fulfilment_api, "balance_enquiry_api": balance_enquiry_api,"accounts": accounts, "customer_id": customer_id, "message": "Transfer funds API called successfully"}
+
 
 @app.post("/get_transfer_fulfilment")
 def get_transfer_fulfilment(request: Request):
