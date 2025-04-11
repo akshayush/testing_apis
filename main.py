@@ -89,7 +89,10 @@ def get_transfer_fulfilment(request: Request):
     accounts= accounts_data.get(customer_id, [])
     if not accounts:
         raise HTTPException(status_code=404, detail="Customer ID not found or no accounts available")
-    
+    if amount >=10000.0:
+        raise HTTPException(status_code=400, detail="Transfer amount exceeds limit")
+    return "Transfer is successful"
+
 @app.post("/enquire_balance")
 def enquire_balance(request: AccountRequest):
     print(f"Request received: {request.json()}")
