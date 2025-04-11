@@ -11,7 +11,7 @@ accounts_data = {
 }
 
 # Request model for customer ID
-class CustomerIDRequest(BaseModel):
+class Request(BaseModel):
     customer_id: int
 
 @app.get("/")
@@ -19,7 +19,8 @@ def read_root():
     return {"message": "Hello, Railway!"}
 
 @app.post("/get_accounts/")
-def get_accounts(request: CustomerIDRequest):
+def get_accounts(request: Request):
+    print("Received request:", request.json())
     customer_id = request.customer_id
     if customer_id not in accounts_data:
         raise HTTPException(status_code=404, detail="Customer ID not found")
