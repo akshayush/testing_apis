@@ -60,7 +60,7 @@ def add_payee(request: PayeeRequest):
 
 
 @app.post("/transfer_funds")
-def transfer_funds(request: Request):
+def transfer_funds(request: AccountRequest):
     print(f"Request received: {request.json()}")
     customer_id = request.customer_id
     if customer_id not in accounts_data:
@@ -78,7 +78,7 @@ def transfer_funds(request: Request):
 
 
 @app.post("/get_transfer_fulfilment")
-def get_transfer_fulfilment(request: Request):
+def get_transfer_fulfilment(request: TransferRequest):
     print(f"Request received: {request.json()}")
     customer_id = request.customer_id
     account_from=request.account_from
